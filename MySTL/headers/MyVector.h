@@ -1,12 +1,13 @@
 #ifndef __MY_VECTOR__
 #define __MY_VECTOR__
 #include <initializer_list>
+#include <iostream>
 #include <cstdio> // size_t
 
 class MyVector {
 public:
     // power of 2 recommended (2, 4, 8, ...)
-    MyVector(int size = 16);
+    MyVector(int size = 8);
     MyVector(std::initializer_list<int> init);
 
     MyVector& push(int value);
@@ -20,7 +21,7 @@ public:
     int* end()                       { return arr + count; }
     int& operator[](size_t idx)      { return arr[idx];    }
     int operator[](size_t idx) const { return arr[idx];    }
-    int get_count() const            { return count;       }
+    size_t get_count() const         { return count;       }
     size_t get_size() const          { return size;        }
 
 private:
@@ -32,6 +33,9 @@ private:
 
     //for initializing only
     size_t power_of_2_minimum(size_t num) const;
+
+//friend:
+    friend std::ostream& operator<<(std::ostream& os, const MyVector& v);
 };
 
 #endif

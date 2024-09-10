@@ -39,7 +39,7 @@ MyVector& MyVector::push(int value) {
 int MyVector::pop_back() {
     int value = arr[--count];
 
-    if ( (size > 4) && (count <= size/2) ) {
+    if ( (size > 8) && (count <= size/2) ) { // minimum size is 8
         resize(size/2);
     }
 
@@ -62,4 +62,16 @@ size_t MyVector::power_of_2_minimum(size_t num) const {
         ans <<= 1;
     }
     return ans;
+}
+
+std::ostream& operator<<(std::ostream& os, const MyVector& v) {
+    os << '{';
+    if (!v.is_empty()) {
+        os << v[0];
+        for (size_t i = 1; i < v.get_count(); i++) {
+            os << ", " << v[i];
+        }
+    }
+    os << '}';
+    return os;
 }
