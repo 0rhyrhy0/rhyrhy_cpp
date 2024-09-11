@@ -9,6 +9,8 @@ public:
     // power of 2 recommended (2, 4, 8, ...)
     MyVector(int size = 8);
     MyVector(std::initializer_list<int> init);
+    MyVector(const MyVector& other);
+    MyVector(MyVector&& other) noexcept;
 
     /**
      * @brief Push `value` at the end of the vector.

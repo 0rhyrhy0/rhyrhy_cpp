@@ -12,6 +12,19 @@ MyVector::MyVector(std::initializer_list<int> init)
     std::copy(init.begin(), init.end(), arr);
 }
 
+MyVector::MyVector(const MyVector& other) : size(other.size), count(other.count) {
+    arr = new int[size];
+    std::copy(other.begin(), other.end(), arr);
+}
+
+MyVector::MyVector(MyVector&& other) noexcept
+    : size(other.size), count(other.count), arr(other.arr)
+{
+    other.size = 0;
+    other.count = 0;
+    other.arr = nullptr;
+}
+
 void MyVector::resize(size_t new_size) {
     if(size == new_size) return;
 
