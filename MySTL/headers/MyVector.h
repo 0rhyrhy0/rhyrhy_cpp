@@ -10,9 +10,36 @@ public:
     MyVector(int size = 8);
     MyVector(std::initializer_list<int> init);
 
+    /**
+     * @brief Push `value` at the end of the vector.
+     * @param value the value to be pushed
+     */
     MyVector& push(int value);
+
+    /**
+     * @brief remove the last element, returning the value.
+     * @return the value which is removed
+     */
     int pop_back();
+
+    /**
+     * @brief check if the vector contains `value`
+     * @param value the value to be checked
+     * @return true if the vector contains `value`, else false
+     */
     bool contains(int value) const;
+
+    /**
+     * @brief search for the value, and erase it if exists
+     * @param value the value to be removed
+     */
+    MyVector& remove(int value);
+
+    /**
+     * @brief remove `arr[idx]`, then rearrange the elements
+     * @param idx the index to be removed
+     */
+    MyVector& erase(int idx);
 
     bool is_empty() const            { return !count;      }
     const int* begin() const         { return arr;         }
@@ -29,12 +56,19 @@ private:
     size_t size;
     size_t count;
 
+    /**
+     * @brief resize the `arr` and modify `size`.
+     * @param new_size new size for `arr` to be resized to.
+     */
     void resize(size_t new_size);
 
-    //for initializing only
+    /**
+     * @brief (for initializing only) calculates minimum 2^n >= `num`
+     * @param num 
+     * @return size_t 
+     */
     size_t power_of_2_minimum(size_t num) const;
 
-//friend:
     friend std::ostream& operator<<(std::ostream& os, const MyVector& v);
 };
 

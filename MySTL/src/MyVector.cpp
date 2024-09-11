@@ -56,6 +56,30 @@ bool MyVector::contains(int value) const {
     return false;
 }
 
+MyVector& MyVector::remove(int value) {
+    for(size_t i=0 ; i<count ; i++) {
+        if(arr[i] == value) {
+            erase(i);
+            return *this;
+        }
+    }
+    // the value was not found, but we're not handling this.
+}
+
+MyVector& MyVector::erase(int idx) {
+    if(idx >= count) {
+        // out of range, also not handling this yet
+        return *this;
+    }
+
+    for(size_t i=idx ; i<count-1 ; i++) {
+        arr[i] = arr[i+1];
+    }
+    count--;
+
+    return *this;
+}
+
 size_t MyVector::power_of_2_minimum(size_t num) const {
     size_t ans = 4;
     while(ans < num) {
